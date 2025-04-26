@@ -5,7 +5,7 @@ import { signOut } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { auth } from "@/lib/firebase";
 
-const SOCKET_URL = "http://localhost:8080";
+const SOCKET_URL = "https://socket-server-production-886b.up.railway.app";
 
 export default function CanvasBoard({ roomId }) {
   const canvasRef = useRef(null);
