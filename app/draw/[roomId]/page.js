@@ -15,7 +15,9 @@ export default function DrawRoomPage() {
   const [isValidRoom, setIsValidRoom] = useState(null); // null = loading
 
   useEffect(() => {
-    const socket = io("http://localhost:8080");
+    const socket = io("https://socket-server-production-886b.up.railway.app", {
+      transports: ["websocket"],
+    });
 
     socket.emit("check-room", roomId, (exists) => {
       if (exists) {
