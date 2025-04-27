@@ -31,7 +31,9 @@ export default function DrawLobbyPage() {
     const code = joinCode.trim();
     if (!code) return alert("Please enter room code.");
 
-    const socket = io("https://socket-server-production-886b.up.railway.app");
+    const socket = io("https://socket-server-production-886b.up.railway.app", {
+      transports: ["websocket"],
+    });
     socket.emit("check-room", code, (exists) => {
       if (exists) {
         socket.disconnect();
