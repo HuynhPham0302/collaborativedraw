@@ -12,7 +12,9 @@ export default function DrawLobbyPage() {
   const handleCreate = () => {
     console.log("🟢 Creating room...");
     const code = generateCode();
-    const socket = io("https://socket-server-production-886b.up.railway.app/");
+    const socket = io("https://socket-server-production-886b.up.railway.app", {
+      transports: ["websocket"],
+    });
 
     socket.emit("create-room", code, () => {
       console.log("✅ Room created:", code);
@@ -29,7 +31,7 @@ export default function DrawLobbyPage() {
     const code = joinCode.trim();
     if (!code) return alert("Please enter room code.");
 
-    const socket = io("https://socket-server-production-886b.up.railway.app/");
+    const socket = io("https://socket-server-production-886b.up.railway.app");
     socket.emit("check-room", code, (exists) => {
       if (exists) {
         socket.disconnect();
